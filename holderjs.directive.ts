@@ -1,11 +1,11 @@
-import { Directive, ElementRef } from '@angular/core';
-declare var Holder: any;
-
+// credit: https://stackoverflow.com/a/46673111/1361529
 @Directive({
-  selector: '[holderjs]'
+  selector: '[holderjs]',
 })
 export class HolderjsDirective {
-    constructor(el: ElementRef) {
-       Holder.run({images:el.nativeElement});
-    }
+  constructor(public el: ElementRef) {}
+
+  ngAfterViewInit() {
+     Holder.run({images:this.el.nativeElement});
+  }
 }
